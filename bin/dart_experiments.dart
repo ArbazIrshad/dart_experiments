@@ -13,7 +13,9 @@ void main(List<String> arguments) {
 
   final parent = de.depthFirstSearch(graph);
   final parentStack = de.depthFirstSearchStack(graph);
+  final bfsParent = de.breathFirstSearch(graph);
 
   print('PARENTS :$parent');
   print('PARENTS_STACK :$parentStack');
+  print('BFS PARENT :$bfsParent');
 }

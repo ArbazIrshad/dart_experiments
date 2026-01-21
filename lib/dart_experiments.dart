@@ -205,3 +205,33 @@ List<int> depthFirstSearchStack(Graph g) {
 
   return parents;
 }
+
+List<int> breathFirstSearch(Graph g) {
+  final seen = List.filled(g.numOfNodes, false);
+  final parents = List.filled(g.numOfNodes, -1);
+
+  final to_explore = Queue<int>();
+
+  for (int i = 0; i < g.numOfNodes; i++) {
+    if (seen[i]) continue;
+
+    to_explore.add(i);
+    seen[i] = true;
+    while (to_explore.isNotEmpty) {
+      final exploring = to_explore.removeFirst();
+
+      final edges = g.nodes[exploring].edgeList;
+
+      for (final edge in edges) {
+        final target = edge.to;
+        if (!seen[target]) {
+          to_explore.add(target);
+          seen[target] = true;
+          parents[target] = exploring;
+        }
+      }
+    }
+  }
+
+  return parents;
+}
